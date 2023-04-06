@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import DataTable from "./components/DataTable";
+import Button from "@mui/material/Button";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import AddPegawaiModal from "./components/AddPegawaiModal";
 
 function App() {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <AddPegawaiModal open={open} setOpen={setOpen} />
+      <div style={{ height: "auto", width: "85%", margin: "auto" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            margin: "20px",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <p style={{ fontFamily: "Times-Bold", fontSize: "30px", margin: 0 }}>
+            Data Pegawai
+          </p>
+          <Button
+            variant="contained"
+            startIcon={<PersonAddIcon />}
+            onClick={() => setOpen(true)}
+          >
+            Tambah Pegawai
+          </Button>
+        </div>
+        <DataTable />
+      </div>
+    </>
   );
 }
 
